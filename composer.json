@@ -1,0 +1,28 @@
+{
+    "name": "heorhiev/php-light-orm",
+    "authors": [
+        {
+            "name": "Ruslan",
+            "email": ""
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.2",
+        "heorhiev/php-light-app": "dev-master"
+    },
+    "require-dev": {
+        "ext-sqlite3": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "light\\orm\\": "src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/heorhiev/php-light-app.git"
+        }
+    ]
+}
