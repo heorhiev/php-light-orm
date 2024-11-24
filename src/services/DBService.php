@@ -3,7 +3,6 @@
 namespace light\orm\services\db;
 
 use app\orm\dto\config\DatabaseDto;
-use light\app\services\SettingsService;
 use mysqli;
 
 
@@ -11,13 +10,33 @@ class DBService
 {
     private static $mysqli;
 
+    /** @var DatabaseDto */
+    private static $config;
 
+
+    public static function init(DatabaseDto $config): void
+    {
+        self::$config = $config;
+    }
+
+
+    /**
+     * @throws \Exception
+     */
     public static function getMysqli(): mysqli
     {
         if (!self::$mysqli) {
-            /** @var DatabaseDto $options */
-            $options = SettingsService::load('database', DatabaseDto::class);
-            self::$mysqli = new mysqli($options->host, $options->username, $options->password, $options->name);;
+
+            if (!self::$config instanceof DatabaseDto) {
+                throw new \Exception('Database config not set');
+            }
+
+            self::$mysqli = new mysqli(
+                self::$config->host,
+                self::$config->username,
+                self::$config->password,
+                self::$config->name
+            );;
         }
 
         return self::$mysqli;
