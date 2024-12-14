@@ -2,7 +2,7 @@
 
 namespace light\orm\repository\traits;
 
-use light\orm\services\db\DBService;
+use light\orm\services\DBService;
 
 
 /**

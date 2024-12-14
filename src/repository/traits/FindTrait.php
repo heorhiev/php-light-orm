@@ -4,7 +4,7 @@ namespace light\orm\repository\traits;
 
 use light\orm\Entity;
 use light\orm\repository\Repository;
-use light\orm\services\db\DBService;
+use light\orm\services\DBService;
 
 
 /**

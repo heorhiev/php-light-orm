@@ -1,6 +1,6 @@
 <?php
 
-namespace light\orm\services\db;
+namespace light\orm\services;
 
 use light\orm\dto\DatabaseDto;
 use mysqli;
