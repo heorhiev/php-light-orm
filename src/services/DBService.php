@@ -2,7 +2,7 @@
 
 namespace light\orm\services\db;
 
-use app\orm\dto\config\DatabaseDto;
+use light\orm\dto\DatabaseDto;
 use mysqli;
 
 
