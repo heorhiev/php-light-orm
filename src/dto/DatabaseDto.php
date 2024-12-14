@@ -1,6 +1,6 @@
 <?php
 
-namespace app\orm\dto\config;
+namespace light\orm\dto;
 
 
 class DatabaseDto extends \light\app\services\DtoService
