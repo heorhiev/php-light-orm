@@ -41,7 +41,7 @@ trait FindTrait
     }
 
 
-    public function filter($conditions): Repository
+    public function filter(array $conditions): Repository
     {
         $where = $columns = [];
         foreach ($conditions as $key => $value) {
@@ -70,7 +70,7 @@ trait FindTrait
     }
 
 
-    public function asArrayOne(): array
+    public function asArrayOne(): ?array
     {
         return $this->_result[0] ?? $this->_result;
     }

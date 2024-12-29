@@ -2,7 +2,7 @@
 
 namespace light\orm\repository;
 
-use light\orm\components\Entity;
+use light\orm\Entity;
 use light\orm\repository\interfaces\RepositoryInterface;
 use light\orm\repository\traits\{FindTrait, SavedTrait, TypesTrait};
 
@@ -30,5 +30,17 @@ abstract class Repository implements RepositoryInterface
     public function entityClassName(): string
     {
         return $this->_entityClassName;
+    }
+
+
+    public function getIdOrCreate(array $attributes)
+    {
+        $result = $this->filter($attributes)->asArrayOne();
+
+        if ($result) {
+            return $result['id'];
+        }
+
+        return $this->create($attributes);
     }
 }

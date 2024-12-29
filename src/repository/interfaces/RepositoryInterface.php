@@ -12,7 +12,7 @@ interface RepositoryInterface
     public function select(array $columns): Repository;
     public function findById(int $id): Repository;
 
-    public function asArrayOne(): array;
+    public function asArrayOne(): ?array;
 
     public function asEntityOne(): ?Entity;
 
