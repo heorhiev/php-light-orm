@@ -12,7 +12,10 @@ use light\orm\services\DBService;
  */
 trait SavedTrait
 {
-    public function create(array $attributes): bool
+    /**
+     * returned auto incremented id
+     */
+    public function create(array $attributes): int
     {
         $columns = array_keys($attributes);
         $placeholders = join(', ', array_fill(0, count($attributes), '?'));
@@ -34,7 +37,7 @@ trait SavedTrait
             throw new \Exception(print_r($st->error, 1));
         }
 
-        return $executed;
+        return $st->insert_id;
     }
 
 
