@@ -74,7 +74,7 @@ trait SavedTrait
 
         $st->bind_param($types, ...array_merge(array_values($attributes), array_values($conditions)));
 
-        if ($st->execute()) {
+        if (!$st->execute()) {
             throw new \Exception(print_r($st->error, 1));
         }
 
