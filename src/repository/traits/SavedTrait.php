@@ -41,7 +41,10 @@ trait SavedTrait
     }
 
 
-    public function update(array $attributes, array $conditions): bool
+    /**
+     * @throws \Exception
+     */
+    public function update(array $attributes, array $conditions): int
     {
         $columns = [];
 
@@ -71,7 +74,11 @@ trait SavedTrait
 
         $st->bind_param($types, ...array_merge(array_values($attributes), array_values($conditions)));
 
-        return $st->execute();
+        if ($st->execute()) {
+            throw new \Exception(print_r($st->error, 1));
+        }
+
+        return $st->insert_id;
     }
 
 

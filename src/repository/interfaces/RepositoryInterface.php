@@ -20,9 +20,9 @@ interface RepositoryInterface
 
     public function getBindTypes(array $columns): array;
 
-    public function create(array $attributes): bool;
+    public function create(array $attributes): int;
 
-    public function update(array $attributes, array $conditions): bool;
+    public function update(array $attributes, array $conditions): int;
 
     public function delete(array $conditions): bool;
 
