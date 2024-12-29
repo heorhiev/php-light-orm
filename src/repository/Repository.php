@@ -33,7 +33,7 @@ abstract class Repository implements RepositoryInterface
     }
 
 
-    public function getIdOrCreate(array $attributes)
+    public function getIdOrCreate(array $attributes): int
     {
         $result = $this->filter($attributes)->asArrayOne();
 
