@@ -1,5 +1,6 @@
 {
     "name": "heorhiev/php-light-orm",
+    "version": "dev-master",
     "authors": [
         {
             "name": "Ruslan",
