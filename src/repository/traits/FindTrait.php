@@ -76,6 +76,12 @@ trait FindTrait
     }
 
 
+    public function asArrayAll(): ?array
+    {
+        return $this->_result;
+    }
+
+
     public function asEntityOne(): ?Entity
     {
         $result = $this->_result[0] ?? $this->_result;
@@ -89,8 +95,15 @@ trait FindTrait
     }
 
 
-    public function asArrayAll(): ?array
+    public function asEntityAll(): ?Entity
     {
-        return $this->_result;
+        $result = $this->_result;
+
+        $class = $this->entityClassName();
+        foreach ($result as $key => $value) {
+            $result[$key] = new $class($value);
+        }
+
+        return $result;
     }
 }
