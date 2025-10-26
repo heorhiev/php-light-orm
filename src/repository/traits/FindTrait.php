@@ -4,7 +4,6 @@ namespace light\orm\repository\traits;
 
 use light\orm\Entity;
 use light\orm\repository\Repository;
-use light\orm\services\DBService;
 
 
 /**
@@ -27,7 +26,7 @@ trait FindTrait
 
     public function findById(int $id): Repository
     {
-        $stmt = DBService::getMysqli()->prepare(
+        $stmt = $this->_db->getMysqli()->prepare(
             sprintf('SELECT %s FROM %s WHERE id = ?', $this->_select, static::tableName())
         );
 
@@ -53,7 +52,7 @@ trait FindTrait
         // bind types
         $types = join('', $this->getBindTypes($columns));
 
-        $stmt = DBService::getMysqli()->prepare(
+        $stmt = $this->_db->getMysqli()->prepare(
             sprintf('SELECT %s FROM %s WHERE %s', $this->_select, static::tableName(), $where)
         );
 

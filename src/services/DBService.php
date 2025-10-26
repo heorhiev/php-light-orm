@@ -8,37 +8,37 @@ use mysqli;
 
 class DBService
 {
-    private static $mysqli;
+    private $mysqli;
 
     /** @var DatabaseDto */
-    private static $config;
+    private $config;
 
 
-    public static function init(DatabaseDto $config): void
+    public function __construct(DatabaseDto $config)
     {
-        self::$config = $config;
+        $this->config = $config;
     }
 
 
     /**
      * @throws \Exception
      */
-    public static function getMysqli(): mysqli
+    public function getMysqli(): mysqli
     {
-        if (!self::$mysqli) {
+        if (!$this->mysqli) {
 
-            if (!self::$config instanceof DatabaseDto) {
+            if (!$this->config instanceof DatabaseDto) {
                 throw new \Exception('Database config not set');
             }
 
-            self::$mysqli = new mysqli(
-                self::$config->host,
-                self::$config->username,
-                self::$config->password,
-                self::$config->name
+            $this->mysqli = new mysqli(
+                $this->config->host,
+                $this->config->username,
+                $this->config->password,
+                $this->config->name
             );;
         }
 
-        return self::$mysqli;
+        return $this->mysqli;
     }
 }

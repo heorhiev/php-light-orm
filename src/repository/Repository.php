@@ -5,6 +5,7 @@ namespace light\orm\repository;
 use light\orm\Entity;
 use light\orm\repository\interfaces\RepositoryInterface;
 use light\orm\repository\traits\{FindTrait, SavedTrait, TypesTrait};
+use light\orm\services\DBService;
 
 
 abstract class Repository implements RepositoryInterface
@@ -13,14 +14,16 @@ abstract class Repository implements RepositoryInterface
 
 
     protected $_entityClassName;
+    protected DBService $_db;
 
 
     abstract public static function tableName(): string;
 
 
-    public function __construct($entityClassName)
+    public function __construct($entityClassName, DBService $db)
     {
         $this->_entityClassName = $entityClassName;
+        $this->_db = $db;
     }
 
 
@@ -42,5 +45,11 @@ abstract class Repository implements RepositoryInterface
         }
 
         return $this->create($attributes);
+    }
+
+
+    public function getDb(): DBService
+    {
+        return $this->_db;
     }
 }

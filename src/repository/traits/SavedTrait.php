@@ -2,8 +2,6 @@
 
 namespace light\orm\repository\traits;
 
-use light\orm\services\DBService;
-
 
 /**
  * @method array getColumns()
@@ -27,7 +25,7 @@ trait SavedTrait
             $placeholders
         );
 
-        $st = DBService::getMysqli()->prepare($sql);
+        $st = $this->_db->getMysqli()->prepare($sql);
 
         $st->bind_param($types, ...array_values($attributes));
 
@@ -70,7 +68,7 @@ trait SavedTrait
         // build sql
         $sql = sprintf('UPDATE %s SET %s WHERE %s', static::tableName(), $updates, $where);
 
-        $st = DBService::getMysqli()->prepare($sql);
+        $st = $this->_db->getMysqli()->prepare($sql);
 
         $st->bind_param($types, ...array_merge(array_values($attributes), array_values($conditions)));
 
@@ -97,7 +95,7 @@ trait SavedTrait
         // build sql
         $sql = sprintf('DELETE FROM %s WHERE %s', static::tableName(), $where);
 
-        $st = DBService::getMysqli()->prepare($sql);
+        $st = $this->_db->getMysqli()->prepare($sql);
 
         $st->bind_param($types, ...array_values($conditions));
 
